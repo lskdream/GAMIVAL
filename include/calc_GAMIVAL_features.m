@@ -1,4 +1,4 @@
-function feats_frames = calc_GAME_features(test_video, width, height, ...
+function feats_frames = calc_GAMIVAL_features(test_video, width, height, ...
                                             framerate, log_level)
     feats_frames = [];
     % Try to open test_video; if cannot, return
@@ -41,8 +41,8 @@ function feats_frames = calc_GAME_features(test_video, width, height, ...
         tic
         fprintf('- Extracting Spatial NSS features (2 fps) ...')
         end
-        prev_feats_spt = GAME_spatial_features(prev_rgb);
-        next_feats_spt = GAME_spatial_features(next_rgb);
+        prev_feats_spt = GAMIVAL_spatial_features(prev_rgb);
+        next_feats_spt = GAMIVAL_spatial_features(next_rgb);
         if log_level == 1, toc; end
         
         %% mean pooling of spatial features within chunk
@@ -80,7 +80,7 @@ function feats_frames = calc_GAME_features(test_video, width, height, ...
             dpt_filt_frames(:,:,freq) = dpt_filt_frames(:,:,freq) + randn(size(dpt_filt_frames(:,:,freq)))*w;
             for scale = 1:2
                 y_scale = imresize(dpt_filt_frames(:,:,freq), 2 ^ (-(scale -1 )));
-                feats_tmp_wpt = [feats_tmp_wpt, GAME_basic_extractor(y_scale)];
+                feats_tmp_wpt = [feats_tmp_wpt, GAMIVAL_basic_extractor(y_scale)];
             end
         end
 
