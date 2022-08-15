@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:984201ecfae73a590461eb197ca5f0823dfa9ad97a777b7524452459e04456b0
-size 296
+data_name = 'LIVE-Meta-Mobile-Cloud-Gaming';
+
+%NDNet+ST
+load(['feature_files/', data_name, '_CNN_bicubic_feats.mat'])
+f = feats_mat;
+
+load(['feature_files/', data_name, '_NSS_bicubic_feats.mat'])
+
+feats_mat = [feats_mat f];
+
+save(['feature_files/', data_name, '_GAMIVAL_feats.mat'], 'feats_mat');
