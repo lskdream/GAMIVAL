@@ -1,6 +1,5 @@
 data_name = 'LIVE-Meta-Mobile-Cloud-Gaming';
 
-%NDNet+ST
 load(['feature_files/', data_name, '_CNN_bicubic_feats.mat'])
 f = feats_mat;
 
