@@ -1,4 +1,4 @@
-function feats = GAME_spatial_features(RGB)
+function feats = GAMIVAL_spatial_features(RGB)
     feats = [];
     
     if(size(RGB,3) ~=3)
@@ -115,7 +115,7 @@ function feats = GAME_spatial_features(RGB)
                 continue;  
             end
             y_scale = imresize(compositeMat(:,:,ch), 2 ^ (-(scale - 1)));
-            feats = [feats GAME_basic_extractor(y_scale)];
+            feats = [feats GAMIVAL_basic_extractor(y_scale)];
         end
     end
 end
