@@ -1,4 +1,4 @@
-function ftrs = GAME_basic_extractor(img)
+function ftrs = GAMIVAL_basic_extractor(img)
 ftrs = [];
 % MSCN
 filtlength = 7;
