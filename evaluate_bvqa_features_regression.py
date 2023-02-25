@@ -306,7 +306,7 @@ def main(args):
   if not os.path.exists(dir_path):
     os.makedirs(dir_path)
   scipy.io.savemat(args.predicted_score, 
-      mdict={'predicted_score': np.asarray(y_pred,dtype=np.float)})
+      mdict={'predicted_score': np.asarray(y_test_pred,dtype=np.float)})
   '''
 
   dir_path = os.path.dirname(args.best_parameter)
