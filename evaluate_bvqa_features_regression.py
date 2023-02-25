@@ -151,7 +151,7 @@ def final_avg(snapshot):
 
 def evaluate_bvqa_kfold(X_train, X_test, y_train, y_test, log_short):
   if not log_short:
-    print('{} th repeated holdout test'.format(i))
+    #print('{} th repeated holdout test'.format(i))
     t_start = time.time()
   
   # grid search CV on the training set
@@ -194,7 +194,7 @@ def evaluate_bvqa_kfold(X_train, X_test, y_train, y_test, log_short):
 
 def evaluate_bvqa_kfold_linearSVR(X_train, X_test, y_train, y_test, log_short):
   if not log_short:
-    print('{} th repeated holdout test'.format(i))
+    #print('{} th repeated holdout test'.format(i))
     t_start = time.time()
 
   # grid search CV on the training set
@@ -281,7 +281,7 @@ def main(args):
       y_train = np.asarray(y_train)
       y_test = np.asarray(y_test)
 
-      best_params, metrics_train, metrics_test, y_test_pred = evaluate_bvqa_kfold(X_train, X_test, X_frame_test, y_train, y_test, args.log_short)
+      best_params, metrics_train, metrics_test, y_test_pred = evaluate_bvqa_kfold(X_train, X_test, y_train, y_test, args.log_short)
       if np.isnan(metrics_test[0]) or np.isnan(metrics_test[1]) or np.isnan(metrics_test[2]) :
          best_params, metrics_train, metrics_test, y_test_pred = evaluate_bvqa_kfold_linearSVR(X_train, X_test, y_train, y_test, args.log_short)
       all_iterations.append(metrics_train + metrics_test)
