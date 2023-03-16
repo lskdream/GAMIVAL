@@ -5,7 +5,7 @@ A MATLAB and Python implementation of GAMIng Video Quality EVALuator (GAMIVAL), 
 All videos, including training ones and testing ones, have their features (2180 features). The features are extracted first by a two-branch framework, which combines 1156 NSS features with 1024 CNN features. Then a support vector regressor is utilized to learn the feature-to-score mappings. The SVR parameters are optimized via a grid-search on the training set. Take LIVE-Meta-Mobile Cloud Gaming database for example, in the paper, 480 videos were used as training set, and other 120 videos were used as testing set. In application to Meta’s cloud game, we can use 600 videos as training set to gain a regressor as a quality predictor.
 
 Schematic flow diagram of the GAMIVAL model. The top portion depicts the spatial and temporal NSS feature computations. The lower portion shows the CNN feature extraction process following NDNetGaming . All of the features are concatenated and utilized to train an SVR model.
-![Alt text](/figures/ModelOverview.pdf)
+![Alt text](/figures/ModelOverview.png)
 
 ## Demos
 ### NSS Feature Extraction
@@ -55,6 +55,7 @@ $ python test_SVR.py
 | NDNet-Gaming | 0.8382 | 0.8200 |
 | VSFA | **0.9143** | **0.9264** |
 | GAMIVAL | **0.9441** | **0.9524** |
+
 Box plots of PLCC, SRCC, and KRCC of evaluated BVQA algorithms on the LIVE-Meta MCG dataset over 1000 splits:
 ![Alt text](/figures/boxplot.png)
 
@@ -71,6 +72,7 @@ Speed was evaluated on the feature extraction function in all the algorithms. Fo
 | NDNet-Gaming | Python, Tensorflow | 779 |
 | VSFA | Python, Pytorch | 2385 |
 | GAMIVAL | Python, Tensorflow, MATLAB | **201**|
+
 Scatter plots of SRCC of NR-VQA algorithms versus runtime on 1080p videos:
 ![Alt text](/figures/time.png)
 
