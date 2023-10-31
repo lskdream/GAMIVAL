@@ -1,6 +1,6 @@
 ## GAMIVAL: Video Quality Prediction on Mobile Cloud Gaming Content
 
-A MATLAB and Python implementation of GAMIng Video Quality EVALuator (GAMIVAL), which is a new gaming-specific no reference video quality assessment model, proposed in [IEEE SPL 2023](https://doi.org/10.1109/LSP.2023.3255011). GAMIVAL achieves superior performance on the new [LIVE-Meta Mobile Cloud Gaming video quality database](https://live.ece.utexas.edu/research/LIVE-Meta-Mobile-Cloud-Gaming/index.html).
+A MATLAB and Python implementation of GAMIng Video Quality EVALuator (GAMIVAL), which is a new gaming-specific no reference video quality assessment model, proposed in [IEEE SPL 2023](https://doi.org/10.1109/LSP.2023.3255011). GAMIVAL achieves superior performance on the new [LIVE-Meta Mobile Cloud Gaming Video Quality Assessment Database](https://live.ece.utexas.edu/research/LIVE-Meta-Mobile-Cloud-Gaming/index.html).
 
 All videos, including training ones and testing ones, have their features (2180 features). The features are extracted first by a two-branch framework, which combines 1156 NSS features with 1024 CNN features. Then a support vector regressor is utilized to learn the feature-to-score mappings. The SVR parameters are optimized via a grid-search on the training set. Take LIVE-Meta-Mobile Cloud Gaming database for example, in the paper, 480 videos were used as training set, and other 120 videos were used as testing set. In application to Meta’s cloud game, we can use 600 videos as training set to gain a regressor as a quality predictor.
 
