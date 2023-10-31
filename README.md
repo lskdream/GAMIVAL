@@ -1,4 +1,4 @@
-# GAMIVAL: Video Quality Prediction on Mobile Cloud Gaming Content
+## GAMIVAL: Video Quality Prediction on Mobile Cloud Gaming Content
 
 A MATLAB and Python implementation of GAMIng Video Quality EVALuator (GAMIVAL), which is a new gaming-specific no reference video quality assessment model, proposed in [IEEE SPL 2023](https://doi.org/10.1109/LSP.2023.3255011). GAMIVAL achieves superior performance on the new [LIVE-Meta Mobile Cloud Gaming video quality database](https://live.ece.utexas.edu/research/LIVE-Meta-Mobile-Cloud-Gaming/index.html).
 
@@ -7,23 +7,23 @@ All videos, including training ones and testing ones, have their features (2180 
 Schematic flow diagram of the GAMIVAL model. The top portion depicts the spatial and temporal NSS feature computations. The lower portion shows the CNN feature extraction process following NDNetGaming . All of the features are concatenated and utilized to train an SVR model.
 ![Alt text](/figures/ModelOverview.png)
 
-## Demos
-### NSS Feature Extraction
+### Demos
+#### NSS Feature Extraction
 ```
 demo_compute_NSS_feats.m
 ```
 
-### CNN Feature Extraction
+#### CNN Feature Extraction
 ```
 $ python demo_compute_CNN_feats.py --dataset_name LIVE-Meta-Gaming
 ```
 
-### Feature Combination
+#### Feature Combination
 ```
 combineFeature.m
 ```
 
-### Evaluation of BVQA Model
+#### Evaluation of BVQA Model
 ```
 $ bash run_all_bvqa_regression.sh
 ```
@@ -32,18 +32,18 @@ or
 $ python evaluate_bvqa_features_regression.py
 ```
 
-### Training a SVR / linear SVR model
+#### Training a SVR / linear SVR model
 ```
 $ python train_SVR.py
 ```
 
-### Predict Quality Score (Testing) via a pretrained SVR / linear SVR model
+#### Predict Quality Score (Testing) via a pretrained SVR / linear SVR model
 ```
 $ python test_SVR.py
 ```
 
-## Performance
-### SRCC / PLCC
+### Performance
+#### SRCC / PLCC
 | Metrics | SRCC | PLCC |
 | ---: | :---: | :---: |
 | NIQE | -0.3900 | 0.4581 |
@@ -59,7 +59,7 @@ $ python test_SVR.py
 Box plots of PLCC, SRCC, and KRCC of evaluated BVQA algorithms on the LIVE-Meta MCG dataset over 1000 splits:
 ![Alt text](/figures/boxplot.png)
 
-### Speed
+#### Speed
 Speed was evaluated on the feature extraction function in all the algorithms. For GAMIVAL, speed was evaluated on `demo_compute_NSS_feats.m` and `demo_compute_CNN_feats.py` functions.
 | Metrics | Platform | Time(sec) |
 | ---: | :---: | :---: |
@@ -76,7 +76,7 @@ Speed was evaluated on the feature extraction function in all the algorithms. Fo
 Scatter plots of SRCC of NR-VQA algorithms versus runtime on 1080p videos:
 ![Alt text](/figures/time.png)
 
-## Citation
+### Citation
 
 If you use this code for your research, please cite the following paper:
 
