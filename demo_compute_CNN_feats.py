@@ -16,13 +16,13 @@ import math
 import time
 
 def test_video(NDGmodel, videopath, videoname, framerate):
-    videofile = os.path.join(videopath, videoname)
-    probe = ffmpeg.probe(videofile)
+    filepath = os.path.join(videopath, videoname)
+    probe = ffmpeg.probe(filepath)
     video_info = next(x for x in probe['streams'] if x['codec_type'] == 'video')
     width = int(video_info['width'])
     height = int(video_info['height'])
     out, err = (ffmpeg
-                .input(videofile)
+                .input(filepath)
                 .output('pipe:', format='rawvideo', pix_fmt = 'rgb24')
                 .run(capture_stdout = True)
                 )
@@ -67,9 +67,8 @@ if __name__== "__main__":
     
     parser.add_argument('-mp', '--model', action='store', dest='model', default=r'./models/subjectiveDemo2_DMOS_Final.model' ,
                     help='Specify model together with the path, e.g. ./models/subjectiveDemo2_DMOS_Final.model')
-
-    parser.add_argument('--videopath', type=str, default='.',
-                        help='Folder containing input videos.')
+    parser.add_argument('--video_path', type=str, default='.',
+                    help='Directory containing the input videos.')
     
     args = parser.parse_args()
     
@@ -87,10 +86,10 @@ if __name__== "__main__":
     NDGmodel = tf.keras.Model(inputs = NDGmodel.input, outputs = x)
     for i in range(len(videoname)):
         t_overall_start = time.time()
-        feature_patch, feats_frame_patch = test_video(NDGmodel, args.videopath, videoname[i], framerate[i])
+        feature_patch, feats_frame_patch = test_video(NDGmodel, args.video_path, videoname[i], framerate[i])
         feature_patch_total.append(feature_patch)
         feats_frame_patch_total[i,0] = feats_frame_patch
         print('Overall {} secs lapsed..'.format(time.time() - t_overall_start))
-        scipy.io.savemat('feats_mat/LIVE-Meta-Mobile-Cloud-Gaming_CNN_bicubic_feats.mat', mdict={'feats_mat': np.asarray(feature_patch_total,dtype=np.float)})
+        scipy.io.savemat('feat_files/LIVE-Meta-Mobile-Cloud-Gaming_CNN_bicubic_feats.mat', mdict={'feats_mat': np.asarray(feature_patch_total,dtype=np.float)})
     
     #scipy.io.savemat('feats_files/LIVE-Meta-Mobile-Cloud-Gaming_CNN_bicubic_feats_frame.mat', mdict={'feats_mat_frames': np.asarray(feats_frame_patch_total,dtype=np.object)})

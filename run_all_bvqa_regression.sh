@@ -27,7 +27,7 @@ for FOLDER in "${FOLDERS[@]}"
 do
 
   feature_file=feat_files/${DS}_${m}_feats.mat
-  out_file=result/$${DS}_${m}
+  out_file=result/${DS}_${m}
   predicted_score=pre_score/${DS}_${m}_predicted_score.mat
   best_pamtr=best_pamtr/${DS}_${m}_pamtr.mat
   log_file=logs/${DS}_regression.log

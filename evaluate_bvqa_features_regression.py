@@ -312,7 +312,7 @@ def main(args):
   dir_path = os.path.dirname(args.best_parameter)
   if not os.path.exists(dir_path):
     os.makedirs(dir_path)
-  scipy.io.savemat(args.best_parameter+'_'+args.num_iterations+'iter.mat', 
+  scipy.io.savemat(args.best_parameter+'_'+str(args.num_iterations)+'iter.mat',
       mdict={'best_parameters': np.asarray(best_parameters,dtype=object)})
 
 if __name__ == '__main__':
