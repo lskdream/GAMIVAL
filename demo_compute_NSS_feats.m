@@ -12,7 +12,7 @@ addpath(genpath('include'));
 algo_name = 'GAMIVAL'; % algorithm name, eg, 'V-BLIINDS'
 data_name = 'GamingVideoSET';  % dataset name, eg, 'KONVID_1K'
 write_file = true;  % if true, save features on-the-fly
-log_level = 0;  % 1=verbose, 0=quite
+log_level = 0;  % 1=verbose, 0=quiet
 
 if strcmp(data_name, 'YT-UGC-Gaming')
     data_path = '/media/LIVELAB/berrie/FB_Project/YouTube_Gaming/original_videos';
