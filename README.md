@@ -29,6 +29,8 @@ GAMIVAL (GAMIng Video Quality EVALuator) is a no-reference video quality assessm
    ```bash
    python demo_compute_CNN_feats.py --dataset_name LIVE-Meta-Gaming
    ```
+> **Important**: For `LIVE-Meta-Gaming`, all videos must be **rescaled from `TrueWidth × TrueHeight` to `DisplayWidth × DisplayHeight`** using **bicubic interpolation** prior to feature extraction. This matches the resolution used during subjective quality rating and ensures consistency in evaluation.
+   
 3. **Combine Features**
    ```bash
    combineFeature.m
@@ -102,6 +104,8 @@ demo_compute_NSS_feats.m
 ```
 $ python demo_compute_CNN_feats.py --dataset_name LIVE-Meta-Gaming
 ```
+
+> **Important**: For `LIVE-Meta-Gaming`, all videos must be **rescaled from `TrueWidth × TrueHeight` to `DisplayWidth × DisplayHeight`** using **bicubic interpolation** prior to feature extraction. This matches the resolution used during subjective quality rating and ensures consistency in evaluation.
 
 #### Feature Combination
 ```
