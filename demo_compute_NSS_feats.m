@@ -87,9 +87,23 @@ for i = 1:num_videos
            ' -pix_fmt yuv420p -vsync 0 ', yuv_name];
     system(cmd);
 
-    % Read video metadata
-    width = filelist.width(i);
-    height = filelist.height(i);
+    % Read video resolution
+    % For most datasets, use original width and height from metadata
+    % For LIVE-Meta-Gaming, use DisplayWidth and DisplayHeight instead of TrueWidth and TrueHeight,
+    % since the videos should be upscaled using bicubic interpolation before feature extraction
+    if strcmp(data_name, 'LIVE-Meta-Gaming')
+        width = filelist.DisplayWidth(i);
+        height = filelist.DisplayHeight(i);
+
+        % NOTE: Make sure that all videos in the LIVE-Meta-Gaming database
+        % are upscaled from (TrueWidth, TrueHeight) to (DisplayWidth, DisplayHeight)
+        % using bicubic interpolation before feature extraction.
+        %
+        % This ensures consistency with the subjective testing conditions.
+    else
+        width = filelist.width(i);
+        height = filelist.height(i);
+    end
     framerate = round(filelist.framerate(i));
 
     % Extract features using the GAMIVAL algorithm
