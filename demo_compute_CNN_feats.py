@@ -15,13 +15,14 @@ import scipy.io
 import math
 import time
 
-def test_video(NDGmodel, videopath, videoname, framerate):    
-    probe = ffmpeg.probe(videoname ) 
+def test_video(NDGmodel, videopath, videoname, framerate):
+    videofile = os.path.join(videopath, videoname)
+    probe = ffmpeg.probe(videofile)
     video_info = next(x for x in probe['streams'] if x['codec_type'] == 'video')
     width = int(video_info['width'])
     height = int(video_info['height'])
     out, err = (ffmpeg
-                .input(videoname)
+                .input(videofile)
                 .output('pipe:', format='rawvideo', pix_fmt = 'rgb24')
                 .run(capture_stdout = True)
                 )
@@ -66,13 +67,16 @@ if __name__== "__main__":
     
     parser.add_argument('-mp', '--model', action='store', dest='model', default=r'./models/subjectiveDemo2_DMOS_Final.model' ,
                     help='Specify model together with the path, e.g. ./models/subjectiveDemo2_DMOS_Final.model')
+
+    parser.add_argument('--videopath', type=str, default='.',
+                        help='Folder containing input videos.')
     
     args = parser.parse_args()
     
     os.environ['CUDA_VISIBLE_DEVICES'] = '-1'#cpu only
 
     csv_file = os.path.join('mos_files', args.dataset_name+'_metadata.csv')
-    df = pandas.read_csv(csv_file)
+    df = pd.read_csv(csv_file)
     videoname = df['File'].to_numpy()
     framerate = df['framerate'].to_numpy()
     feature_patch_total = []
@@ -83,7 +87,7 @@ if __name__== "__main__":
     NDGmodel = tf.keras.Model(inputs = NDGmodel.input, outputs = x)
     for i in range(len(videoname)):
         t_overall_start = time.time()
-        feature_patch, feats_frame_patch = test_video(NDGmodel, values.videopath, videoname[i], framerate[i])
+        feature_patch, feats_frame_patch = test_video(NDGmodel, args.videopath, videoname[i], framerate[i])
         feature_patch_total.append(feature_patch)
         feats_frame_patch_total[i,0] = feats_frame_patch
         print('Overall {} secs lapsed..'.format(time.time() - t_overall_start))
