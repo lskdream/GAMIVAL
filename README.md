@@ -46,6 +46,10 @@ GAMIVAL (GAMIng Video Quality EVALuator) is a no-reference video quality assessm
    ```bash
    python test_SVR.py
    ```
+6. **Check Feature Matrix Size**
+   ```bash
+   python print_feat_mat_shape.py feat_files/LIVE-Meta-Gaming_CNN_bicubic_feats.mat
+   ```
 
 ## Performance
 

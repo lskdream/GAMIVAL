@@ -6,3 +6,4 @@ Keras
 glob2
 argparse
 pandas
+scipy
