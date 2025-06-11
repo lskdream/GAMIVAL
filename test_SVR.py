@@ -10,8 +10,12 @@ python test_SVR.py \
   --use_parallel
 
 '''
+__test__ = False  # Prevent pytest from collecting this script as a test
 
-import pandas
+try:
+  import pandas
+except ImportError:  # Allow importing without pandas for testing
+  pandas = None
 import scipy.io
 import numpy as np
 import argparse

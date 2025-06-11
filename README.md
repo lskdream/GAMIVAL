@@ -42,6 +42,12 @@ $ python train_SVR.py
 $ python test_SVR.py
 ```
 
+### Running Unit Tests
+Unit tests are located in the `tests/` directory and can be executed with:
+```
+$ pytest
+```
+
 ### Performance
 #### SRCC / PLCC
 | Metrics | SRCC | PLCC |

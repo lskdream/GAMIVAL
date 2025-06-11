@@ -13,7 +13,10 @@ python evaluate_bvqa_features_regression.py \
 
 '''
 
-import pandas
+try:
+  import pandas
+except ImportError:  # Allow importing without pandas for testing
+  pandas = None
 import scipy.io
 import numpy as np
 import argparse
